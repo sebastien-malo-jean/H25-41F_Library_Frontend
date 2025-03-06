@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+header,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Uncial Antiqua', cursive;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}

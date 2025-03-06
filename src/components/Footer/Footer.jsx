@@ -1,12 +1,12 @@
+import "./Footer.css";
 function Footer() {
-    const date = new Date();
+  const year = new Date().getFullYear();
 
-    return (
-        <footer>
-        <p>Tous droits réservés - {date.getFullYear()}</p>
-        </footer>
-    );
-    
+  return (
+    <footer>
+      <p>Tous droits réservés - {year}</p>
+    </footer>
+  );
 }
 
 export default Footer;
