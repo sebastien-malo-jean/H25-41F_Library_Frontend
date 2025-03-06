@@ -12,7 +12,7 @@ function CharacterCard(props) {
 
   return (
     <article className="card">
-      <div className="card-header">
+      <div className="card-header ">
         <h3>{character.name}</h3>
       </div>
       <div className="card-body">

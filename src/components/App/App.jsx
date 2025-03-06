@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer";
 //routes
 import Home from "../Home/Home";
 import CharacterList from "../CharacterList/CharacterList";
+import CharacterDetails from "../CharacterDetails/CharacterDetails";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Characters" element={<CharacterList />} />
+        <Route path="/Characters/:id" element={<CharacterDetails />} />
       </Routes>
       <Footer />
     </div>

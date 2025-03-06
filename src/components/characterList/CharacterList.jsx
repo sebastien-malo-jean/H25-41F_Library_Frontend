@@ -1,7 +1,13 @@
+//CSS de la page
 import "./CharacterList.css";
+
+//importation de librairies
 import { useState, useEffect } from "react";
+
+//importation de composants
 import CharacterCard from "../characterCard/characterCard";
 
+//page
 function CharacterList() {
   let [characters, setCharacters] = useState([]);
 
@@ -10,8 +16,8 @@ function CharacterList() {
       const response = await fetch(
         "https://h25-41f-library.onrender.com/characters"
       );
-      const charactersDatas = await response.json();
-      setCharacters(charactersDatas);
+      const charactersData = await response.json();
+      setCharacters(charactersData);
     }
     fetchData();
   }, []);
