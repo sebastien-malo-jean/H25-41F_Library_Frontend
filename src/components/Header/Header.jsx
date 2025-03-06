@@ -1,4 +1,8 @@
+//import du Css pour le header
 import "./header.css";
+//importation des routes
+import { NavLink, Link } from "react-router-dom";
+//importation du logo
 import logo from "../../assets/img/logo.jpg";
 function Header() {
   return (
@@ -9,13 +13,13 @@ function Header() {
       <nav>
         <ul>
           <li>
-            <a href="#">Accueil</a>
+            <NavLink to={"/"}>Accueil</NavLink>
           </li>
           <li>
             Personnages 🡇
             <ul>
               <li>
-                <a href="#">Liste des personnages</a>
+                <NavLink to={"/characters"}>Liste des personnages</NavLink>
               </li>
               <li>
                 <a href="#">Création d'un nouveau personnage</a>

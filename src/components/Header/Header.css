@@ -81,3 +81,11 @@
         text-decoration: none;
         color: gold;
     }
+
+    header h1 {
+        font-family: 'Uncial Antiqua', cursive;
+        font-size: 2rem;
+        color: gold;
+        margin: 10px 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
