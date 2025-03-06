@@ -4,11 +4,11 @@ import Footer from "../Footer/Footer";
 
 function App() {
   return (
-    <main>
+    <body>
       <Header />
-
+      <main></main>
       <Footer />
-    </main>
+    </body>
   );
 }
 export default App;

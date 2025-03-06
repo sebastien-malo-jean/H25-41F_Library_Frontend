@@ -4,6 +4,7 @@ function Footer() {
 
   return (
     <footer>
+      <h1>Créateur de personnage</h1>
       <p>Tous droits réservés - {year}</p>
     </footer>
   );
