@@ -1,0 +1,36 @@
+.card {
+    background-color: #696565;
+    color: rgb(248, 243, 212);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 250px;
+    /* Hauteur fixe pour que toutes les cartes soient égales */
+}
+
+.card div {
+    font-size: 1.2rem;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.card-header {
+    & h3 {
+        margin: 0;
+    }
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    & p {
+        margin: 0;
+    }
+}

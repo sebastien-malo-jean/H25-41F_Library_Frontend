@@ -1,4 +1,6 @@
+import "./CharacterList.css";
 import { useState, useEffect } from "react";
+import CharacterCard from "../characterCard/characterCard";
 
 function CharacterList() {
   let [characters, setCharacters] = useState([]);
@@ -16,12 +18,14 @@ function CharacterList() {
 
   return (
     <main>
-      <h2>Liste des Personnages</h2>
-      <div className="grid">
-        {characters.map((character) => {
-          return <div key={character.id}>{character.name}</div>;
-        })}
-      </div>
+      <section>
+        <h2>Liste des Personnages</h2>
+        <div className="grid">
+          {characters.map((character) => {
+            return <CharacterCard key={character.id} character={character} />;
+          })}
+        </div>
+      </section>
     </main>
   );
 }

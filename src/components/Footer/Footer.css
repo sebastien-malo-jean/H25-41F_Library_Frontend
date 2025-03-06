@@ -1,14 +1,6 @@
 /* Import de la police */
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    /* Permet de rendre le body au moins aussi grand que la fenêtre */
-    margin: 0;
-}
-
 footer {
     display: flex;
     flex-direction: column;

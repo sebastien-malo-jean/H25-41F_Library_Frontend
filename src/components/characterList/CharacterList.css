@@ -1,0 +1,29 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 colonnes de largeur égale */
+    gap: 1rem;
+    /* Espacement entre les cartes */
+    margin-top: 2rem;
+}
+
+@media (max-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 colonnes pour les écrans plus petits */
+    }
+}
+
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 colonnes pour les écrans encore plus petits */
+    }
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+        /* 1 colonne pour les très petits écrans (téléphones) */
+    }
+}
