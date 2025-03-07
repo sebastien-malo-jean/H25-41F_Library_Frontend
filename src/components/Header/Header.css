@@ -23,70 +23,69 @@
                 object-fit: cover;
             }
         }
-    }
 
+        & nav ul {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.2rem;
+        }
 
-    nav ul {
-        display: flex;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        font-family: 'Roboto', sans-serif;
-        font-size: 1.2rem;
-    }
+        & nav ul li {
+            margin: 0 15px;
+            position: relative;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 5px;
+            color: gold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            transition: transform 0.2s ease-in-out;
+        }
 
-    nav ul li {
-        margin: 0 15px;
-        position: relative;
-        padding: 10px 15px;
-        background: rgba(0, 0, 0, 0.6);
-        border-radius: 5px;
-        color: gold;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-        transition: transform 0.2s ease-in-out;
-    }
+        & nav ul li:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+            background: rgba(138, 0, 0, 0.8);
+        }
 
-    nav ul li:hover {
-        cursor: pointer;
-        transform: scale(1.1);
-        background: rgba(138, 0, 0, 0.8);
-    }
+        & nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid gold;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+        }
 
-    nav ul li ul {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background: rgba(0, 0, 0, 0.9);
-        border: 2px solid gold;
-        border-radius: 5px;
-        padding: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-    }
+        & nav ul li:hover ul {
+            display: block;
+        }
 
-    nav ul li:hover ul {
-        display: block;
-    }
+        & nav ul li ul li {
+            padding: 8px 12px;
+            background: none;
+            border-bottom: 1px solid gold;
+        }
 
-    nav ul li ul li {
-        padding: 8px 12px;
-        background: none;
-        border-bottom: 1px solid gold;
-    }
+        & nav ul li ul li:last-child {
+            border-bottom: none;
+        }
 
-    nav ul li ul li:last-child {
-        border-bottom: none;
-    }
+        & nav a {
+            text-decoration: none;
+            color: gold;
+        }
 
-    nav a {
-        text-decoration: none;
-        color: gold;
-    }
-
-    header h1 {
-        font-family: 'Uncial Antiqua', cursive;
-        font-size: 2rem;
-        color: gold;
-        margin: 10px 0;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        & h1 {
+            font-family: 'Uncial Antiqua', cursive;
+            font-size: 2rem;
+            color: gold;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
     }

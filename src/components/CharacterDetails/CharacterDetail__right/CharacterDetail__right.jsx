@@ -1,19 +1,34 @@
 //css
 import "./CharacterDetail__right.css";
 //bibliothèques
-import { useEffect } from "react";
+import { useState } from "react";
 
 function CharacterDetail__right(props) {
   const { character } = props;
 
+  const [activeSection, setActiveSection] = useState("info");
+
+  function onClicBtn(section) {
+    setActiveSection(section);
+  }
   return (
     <section className="characterDetail__right">
       <section className="sectionChoice">
-        <button type="button">Infos de base</button>
-        <button type="button">Traits</button>
-        <button type="button">Statistiques</button>
+        <button type="button" onClick={() => onClicBtn("info")}>
+          Infos de base
+        </button>
+        <button type="button" onClick={() => onClicBtn("traits")}>
+          Traits
+        </button>
+        <button type="button" onClick={() => onClicBtn("stats")}>
+          Statistiques
+        </button>
       </section>
-      <section className="CharacterBasicInfo">
+      <section
+        className={`CharacterBasicInfo ${
+          activeSection === "info" ? "" : "hidden"
+        }`}
+      >
         <h3>Information de base</h3>
         <p>
           <strong>Vocation :</strong> {character.charVoc}
@@ -41,7 +56,11 @@ function CharacterDetail__right(props) {
           <strong>Niveau :</strong> {character.lvl}
         </p>
       </section>
-      <section className="CharacterTraits hidden">
+      <section
+        className={`CharacterTraits ${
+          activeSection === "traits" ? "" : "hidden"
+        }`}
+      >
         <h3>Traits :</h3>
         <ul>
           <li>
@@ -67,7 +86,11 @@ function CharacterDetail__right(props) {
           </li>
         </ul>
       </section>
-      <section className="CharacterStatistics hidden">
+      <section
+        className={`CharacterStatistics ${
+          activeSection === "stats" ? "" : "hidden"
+        }`}
+      >
         <h3>statistics</h3>
         <ul>
           <li>

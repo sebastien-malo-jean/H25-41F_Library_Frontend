@@ -1,3 +1,28 @@
+.characterDetail__right {
+    min-height: 500px;
+
+    & .sectionChoice {
+        display: inline-flex;
+        gap: 1rem;
+
+        & button {
+            position: relative;
+            padding: .3rem;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 5px;
+            color: gold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        & button:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+            background: rgba(138, 0, 0, 0.8);
+        }
+    }
+}
+
 .hidden {
     display: none;
 }
