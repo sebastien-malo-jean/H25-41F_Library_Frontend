@@ -1,0 +1,30 @@
+.characterDetail {
+    background-color: rgb(224, 224, 224);
+    display: grid;
+    grid-template-areas:
+        "title title"
+        "left right"
+        "description description";
+    grid-template-columns: 3fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+
+    & .characterDetail__title {
+        grid-area: title;
+    }
+
+    & .characterDetail__left {
+        grid-area: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    & .right {
+        grid-area: right;
+    }
+
+    & .characterDetail__description {
+        grid-area: description;
+    }
+}
