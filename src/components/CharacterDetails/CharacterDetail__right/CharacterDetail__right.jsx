@@ -1,9 +1,18 @@
 //css
 import "./CharacterDetail__right.css";
 //bibliothèques
-function CharacterDetail__right() {
+import { useEffect } from "react";
+
+function CharacterDetail__right(props) {
+  const { character } = props;
+
   return (
     <section className="characterDetail__right">
+      <section className="sectionChoice">
+        <button type="button">Infos de base</button>
+        <button type="button">Traits</button>
+        <button type="button">Statistiques</button>
+      </section>
       <section className="CharacterBasicInfo">
         <h3>Information de base</h3>
         <p>
@@ -32,7 +41,7 @@ function CharacterDetail__right() {
           <strong>Niveau :</strong> {character.lvl}
         </p>
       </section>
-      <section className="CharacterTraits">
+      <section className="CharacterTraits hidden">
         <h3>Traits :</h3>
         <ul>
           <li>
@@ -58,7 +67,7 @@ function CharacterDetail__right() {
           </li>
         </ul>
       </section>
-      <section className="CharacterStatistics">
+      <section className="CharacterStatistics hidden">
         <h3>statistics</h3>
         <ul>
           <li>

@@ -4,7 +4,7 @@ import "./CharacterDetails.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"; // Import pour récupérer l'ID
 //composants
-import CharacterDetail__right from "./characterDetail__right/CharacterDetail__right";
+import CharacterDetail__right from "./CharacterDetail__right/CharacterDetail__right";
 
 function CharacterDetails() {
   const { id } = useParams(); // Récupère l'ID depuis l'URL

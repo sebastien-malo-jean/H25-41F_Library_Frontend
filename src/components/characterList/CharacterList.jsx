@@ -5,7 +5,7 @@ import "./CharacterList.css";
 import { useState, useEffect } from "react";
 
 //importation de composants
-import CharacterCard from "../characterCard/characterCard";
+import CharacterCard from "./characterCard/characterCard";
 
 //page
 function CharacterList() {
