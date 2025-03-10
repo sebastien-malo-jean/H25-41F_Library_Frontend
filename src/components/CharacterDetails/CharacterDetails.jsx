@@ -35,7 +35,7 @@ function CharacterDetails() {
   if (!character) return <p>Aucun personnage trouvé.</p>;
 
   return (
-    <main>
+    <main className="characterDetail__main">
       <h2>Détail du personnage</h2>
       <section className="characterDetail">
         <section className="characterDetail__title">
@@ -43,7 +43,10 @@ function CharacterDetails() {
         </section>
         <section className="characterDetail__left">
           <picture className="characterPicture">
-            <img alt={character.name} />
+            <img
+              src={`/src/assets/img/characters/${character.characterThumbnail}`}
+              alt={character.name}
+            />
           </picture>
           <section className="CharacterHitpoints">
             <h3>Point de vie</h3>

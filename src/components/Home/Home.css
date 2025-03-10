@@ -1,0 +1,7 @@
+.grosRectangle {
+    min-width: 800px;
+    min-height: 600px;
+    border: solid red 2px;
+    text-align: center;
+    color: red;
+}

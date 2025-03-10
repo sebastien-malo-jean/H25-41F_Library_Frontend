@@ -11,8 +11,8 @@ function CharacterCard(props) {
   }
 
   return (
-    <article className="card">
-      <div className="card-header ">
+    <article className="card" data-type={character.class}>
+      <div className="card-header">
         <h3>{character.name}</h3>
       </div>
       <div className="card-body">
