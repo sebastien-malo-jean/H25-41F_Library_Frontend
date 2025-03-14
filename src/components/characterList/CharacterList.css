@@ -27,3 +27,20 @@
         /* 1 colonne pour les très petits écrans (téléphones) */
     }
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 4px solid var(--divider);
+    border-top-color: #ff0088;
+    will-change: transform;
+}

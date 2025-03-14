@@ -2,6 +2,7 @@
 import "./CharacterDetail__right.css";
 //bibliothèques
 import { useState } from "react";
+import { animate } from "motion";
 
 function CharacterDetail__right(props) {
   const { character } = props;
@@ -11,6 +12,9 @@ function CharacterDetail__right(props) {
   function onClicBtn(section) {
     setActiveSection(section);
   }
+
+  function ChangeSectionView() {}
+
   return (
     <section className="characterDetail__right">
       <section className="sectionChoice">

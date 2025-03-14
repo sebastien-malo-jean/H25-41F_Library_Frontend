@@ -6,12 +6,14 @@ import { useState, useEffect } from "react";
 
 //importation de composants
 import CharacterCard from "./characterCard/characterCard";
+import { motion } from "motion/react";
 
 //page
 function CharacterList() {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loadingText, setLoadingText] = useState(""); // Nouvelle variable d'état pour les points de "loading"
 
   useEffect(() => {
     async function fetchData() {
@@ -25,15 +27,40 @@ function CharacterList() {
       } catch (err) {
         setError(err.message);
       } finally {
-        setLoading(false);
+        // Ajout d'un délai pour ralentir l'affichage des personnages
+        setTimeout(() => {
+          setLoading(false);
+        }, 1500);
       }
     }
     fetchData();
   }, []);
 
-  if (loading) return <p>Chargement...</p>;
+  // Fonction pour afficher les points de "loading"
+  useEffect(() => {
+    let sentence = "";
+    const intervalId = setInterval(() => {
+      if (sentence.length < 3) {
+        sentence += ".";
+      } else {
+        sentence = ".";
+      }
+      setLoadingText(sentence);
+    }, 300);
+
+    // Nettoyage de l'intervalle lorsque le composant est démonté
+    return () => clearInterval(intervalId);
+  }, []); // Ce useEffect ne se déclenche qu'une seule fois au montage du composant
+
+  if (loading)
+    return (
+      <>
+        <p>Chargement {loadingText}</p>{" "}
+        {/* Affiche les points de loading dans l'UI */}
+      </>
+    );
   if (error) return <p>Erreur : {error}</p>;
-  if (!characters) return <p>Aucun personnage trouvé.</p>;
+  if (!characters.length) return <p>Aucun personnage trouvé.</p>;
 
   return (
     <main>
