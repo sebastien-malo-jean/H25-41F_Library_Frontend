@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer";
 import Home from "../Home/Home";
 import CharacterList from "../CharacterList/CharacterList";
 import CharacterDetails from "../CharacterDetails/CharacterDetails";
+import FormAddCharacter from "../FormAddCharacter/FormAddCharacter";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Characters" element={<CharacterList />} />
-        <Route path="/Characters/:id" element={<CharacterDetails />} />
+        <Route path="/characters" element={<CharacterList />} />
+        <Route path="/characters/create" element={<FormAddCharacter />} />
+        <Route path="/characters/:id" element={<CharacterDetails />} />
       </Routes>
       <Footer />
     </div>
