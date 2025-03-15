@@ -23,7 +23,7 @@ function Header() {
               </li>
               <li>
                 <NavLink to={"/characters/create"}>
-                  Création d'un nouveau personnage
+                  Création de personnage
                 </NavLink>
               </li>
             </ul>
