@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./FormAddCharacter.css";
 import characterClass from "../../assets/data/characterClass";
 import characterRace from "../../assets/data/characterRace";
-import characterAlignement from "../../assets/data/characterAlignement";
+import characterAlignment from "../../assets/data/characterAlignment";
 import characterStatistics from "../../assets/data/characterStats";
 
 function FormAddCharacter() {
@@ -19,6 +19,8 @@ function FormAddCharacter() {
       .join("");
     return cleanedString;
   }
+
+  function rollDices(stat) {}
 
   return (
     <main>
@@ -83,19 +85,27 @@ function FormAddCharacter() {
         <div className="input-group">
           <label htmlFor="alignement.Ethic">Alignement du Personnage</label>
           <select name="alignement.Ethic" id="alignement.Ethic">
-            {characterAlignement.ethic.map((value, index) => (
+            {characterAlignment.ethic.map((value, index) => (
               <option key={index} value={value}>
                 {value}
               </option>
             ))}
           </select>
           <select name="alignement.Moral" id="alignement.Moral">
-            {characterAlignement.moral.map((value, index) => (
+            {characterAlignment.moral.map((value, index) => (
               <option key={index} value={value}>
                 {value}
               </option>
             ))}
           </select>
+        </div>
+        <div className="input-group">
+          <label htmlFor="exp">Exéprience</label>
+          <input type="number" name="exp" id="exp" value={0} disabled />
+        </div>
+        <div className="input-group">
+          <label htmlFor="level">Niveau</label>
+          <input type="number" name="level" id="level" value={1} disabled />
         </div>
         <div className="input-group">
           <h3>Trait</h3>
@@ -121,9 +131,19 @@ function FormAddCharacter() {
           </div>
         </div>
         <div className="input-group">
-          {characterStatistics.map((stat) => {
-            <label htmlFor={stat}>{stat}</label>;
-          })}
+          <h3>Statistiques</h3>
+          {characterStatistics.map((stat) => (
+            <div className="input-group" key={stat}>
+              <label htmlFor={stat}>{stat}</label>
+              <input
+                type="number"
+                name={`statistics.${stat}`}
+                id={stat}
+                disabled
+              />
+              <button type="button">dé</button>
+            </div>
+          ))}
         </div>
       </form>
     </main>

@@ -1,10 +1,10 @@
 const characterStatistics = [
-  "strength",
-  "dexterity",
-  "constitution",
-  "intelligence",
-  "wisdom",
-  "charisma",
+  "Force",
+  "Dexterité",
+  "Constitution",
+  "Intelligence",
+  "Sagesse",
+  "Charisme",
 ];
 
 export default characterStatistics;
