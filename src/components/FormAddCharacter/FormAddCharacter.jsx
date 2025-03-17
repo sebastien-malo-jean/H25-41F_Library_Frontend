@@ -16,12 +16,23 @@ function FormAddCharacter() {
     gender: "",
     class: "",
     race: "",
-    alignment: { ethic: "", moral: "" },
+    alignment: {
+      ethic: "",
+      moral: "",
+    },
     description: "",
-    traits: { personalityTraits: "", ideals: "", bonds: "", flaws: "" },
+    traits: {
+      personalityTraits: "",
+      ideals: "",
+      bonds: "",
+      flaws: "",
+    },
     exp: 0,
     level: 1,
-    hitPoints: { totalHp: "", currentHp: "" },
+    hitPoints: {
+      totalHp: "",
+      currentHp: "",
+    },
     statistics: {
       strength: 0,
       dexterity: 0,
@@ -161,30 +172,24 @@ function FormAddCharacter() {
 
   const onSubmitCharacterForm = async (event) => {
     event.preventDefault();
-
-    const characterData = {
-      name: dataCharacter.name,
-      level: dataCharacter.level,
-      exp: dataCharacter.exp,
-      hitPoints: dataCharacter.hitPoints,
-      statistics: dataCharacter.statistics,
-      // Vérifiez que vous envoyez toutes les données nécessaires
+    const objRequest = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataCharacter),
     };
-
     try {
       const response = await fetch(
         "https://h25-41f-library.onrender.com/characters",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(characterData),
-        }
+        objRequest
       );
+      console.log(response);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
+      } else {
+        navigate("/characters");
       }
 
       // Traitez la réponse si la requête réussit
