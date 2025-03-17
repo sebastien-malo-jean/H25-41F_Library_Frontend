@@ -63,9 +63,11 @@ function FormAddCharacter() {
   }
 
   function rollDices(stat) {
-    setStats((prevStats) => ({
-      ...prevStats,
-      [stat]: Math.floor(Math.random() * 6) + 1,
+    const roll = Math.floor(Math.random() * 6) + 1;
+    setStats((prevStats) => ({ ...prevStats, [stat]: roll }));
+    setDataCharacter((prevData) => ({
+      ...prevData,
+      statistics: { ...prevData.statistics, [stat]: roll },
     }));
   }
 
