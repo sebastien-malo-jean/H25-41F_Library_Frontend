@@ -29,6 +29,51 @@ function FormAddCharacter() {
       charisma: 0,
     },
   });
+  const [currentSection, setCurrentSection] = useState(1);
+
+  // Fonction de validation générique
+  const isSectionValid = (section) => {
+    switch (section) {
+      case 1:
+        // Validation de la section 1 :
+        return (
+          dataCharacter.charVoc.trim() !== "" &&
+          dataCharacter.name.trim() !== "" &&
+          dataCharacter.characterThumbnail.trim() !== "" &&
+          dataCharacter.gender.trim() !== "" &&
+          dataCharacter.class.trim() !== "" &&
+          dataCharacter.race.trim() !== ""
+        );
+      case 2:
+        // Validation de la section 2
+        return (
+          dataCharacter.alignment.ethic.trim() !== "" &&
+          dataCharacter.alignment.moral.trim() !== "" &&
+          dataCharacter.description.trim() !== "" &&
+          dataCharacter.traits.personalityTraits.trim() !== "" &&
+          dataCharacter.traits.ideals.trim() !== "" &&
+          dataCharacter.traits.bonds.trim() !== "" &&
+          dataCharacter.traits.flaws.trim() !== ""
+        );
+      case 3:
+        // Validation de la section 3 :
+        return (
+          dataCharacter.statistics.strength !== 0 &&
+          dataCharacter.statistics.dexterity !== 0 &&
+          dataCharacter.statistics.constitution !== 0 &&
+          dataCharacter.statistics.intelligence !== 0 &&
+          dataCharacter.statistics.wisdom !== 0 &&
+          dataCharacter.statistics.charisma !== 0
+        );
+      default:
+        return false;
+    }
+  };
+
+  // Fonction pour désactiver le bouton "Suivant"
+  const isNextButtonDisabled = () => {
+    return !isSectionValid(currentSection);
+  };
 
   const handleNameChange = (e) => {
     const newName = e.target.value;
@@ -115,8 +160,11 @@ function FormAddCharacter() {
   return (
     <main>
       <h2>Création d'un Personnage</h2>
-      <form action="">
-        <section>
+      <form action="" className="formAddCharacter">
+        <section
+          className="formAddCharacter__section"
+          style={{ display: currentSection === 1 ? "flex" : "none" }}
+        >
           <h3>menu 1</h3>
           <div className="input-group">
             <label htmlFor="charVoc">Vocation du Personnage</label>
@@ -201,10 +249,19 @@ function FormAddCharacter() {
             </div>
           </section>
           <div className="button-group">
-            <button type="button">Suivant</button>
+            <button
+              type="button"
+              onClick={() => setCurrentSection((prev) => Math.min(prev + 1, 3))}
+              disabled={isNextButtonDisabled()}
+            >
+              Suivant
+            </button>
           </div>
         </section>
-        <section>
+        <section
+          className="formAddCharacter__section"
+          style={{ display: currentSection === 2 ? "flex" : "none" }}
+        >
           <h3>"Background"</h3>
           <div className="input-group">
             <label htmlFor="alignment.ethic">Alignement du Personnage</label>
@@ -288,11 +345,25 @@ function FormAddCharacter() {
             </div>
           </div>
           <div className="button-group">
-            <button type="button">Précédent</button>
-            <button type="button">Suivant</button>
+            <button
+              type="button"
+              onClick={() => setCurrentSection((prev) => Math.max(prev - 1, 1))}
+            >
+              Précédent
+            </button>
+            <button
+              type="button"
+              onClick={() => setCurrentSection((prev) => Math.min(prev + 1, 3))}
+              disabled={isNextButtonDisabled()}
+            >
+              Suivant
+            </button>
           </div>
         </section>
-        <section>
+        <section
+          className="formAddCharacter__section"
+          style={{ display: currentSection === 3 ? "flex" : "none" }}
+        >
           <h3>Autres</h3>
           <div className="input-group" hidden>
             <div className="input-group">
@@ -358,8 +429,17 @@ function FormAddCharacter() {
             ))}
           </div>
           <div className="button-group">
-            <button type="button">Précédent</button>
-            <input type="submit" value="Création de Personnage" />
+            <button
+              type="button"
+              onClick={() => setCurrentSection((prev) => Math.max(prev - 1, 1))}
+            >
+              Précédent
+            </button>
+            <input
+              type="submit"
+              value="Création de Personnage"
+              disabled={isNextButtonDisabled()}
+            />
           </div>
         </section>
       </form>
