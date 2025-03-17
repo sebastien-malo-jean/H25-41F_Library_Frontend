@@ -4,8 +4,10 @@ import characterClass from "../../assets/data/characterClass";
 import characterRace from "../../assets/data/characterRace";
 import characterAlignment from "../../assets/data/characterAlignment";
 import characterStatistics from "../../assets/data/characterStats";
+import { useNavigate } from "react-router-dom";
 
 function FormAddCharacter() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [dataCharacter, setDataCharacter] = useState({
     charVoc: "",
@@ -86,8 +88,8 @@ function FormAddCharacter() {
     }));
   };
 
-  const handleSelectChange = (e) => {
-    const { name, value } = e.target;
+  const handleChangement = (e) => {
+    const { name, value } = e.currentTarget;
 
     setDataCharacter((prevData) => {
       const keys = name.split(".");
@@ -157,22 +159,64 @@ function FormAddCharacter() {
     }));
   }
 
+  const onSubmitCharacterForm = async (event) => {
+    event.preventDefault();
+
+    const characterData = {
+      name: dataCharacter.name,
+      level: dataCharacter.level,
+      exp: dataCharacter.exp,
+      hitPoints: dataCharacter.hitPoints,
+      statistics: dataCharacter.statistics,
+      // Vérifiez que vous envoyez toutes les données nécessaires
+    };
+
+    try {
+      const response = await fetch(
+        "https://h25-41f-library.onrender.com/characters",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(characterData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Traitez la réponse si la requête réussit
+    } catch (error) {
+      console.error("Erreur lors de la création du personnage:", error);
+    }
+  };
+
   return (
-    <main>
+    <main className="formAddCharacter__main">
       <h2>Création d'un Personnage</h2>
-      <form action="" className="formAddCharacter">
+      <form
+        action=""
+        className="formAddCharacter"
+        onSubmit={onSubmitCharacterForm}
+      >
         <section
           className="formAddCharacter__section"
           style={{ display: currentSection === 1 ? "flex" : "none" }}
         >
-          <h3>menu 1</h3>
-          <div className="input-group">
-            <label htmlFor="charVoc">Vocation du Personnage</label>
+          <h3 className="formAddCharacter__title">Information Général</h3>
+
+          <div className="formAddCharacter__input-group">
+            <label htmlFor="charVoc" className="formAddCharacter__label">
+              Vocation du Personnage
+            </label>
             <select
               name="charVoc"
               id="charVoc"
+              className="formAddCharacter__select"
               value={dataCharacter.charVoc}
-              onChange={handleSelectChange}
+              onChange={handleChangement}
             >
               <option value="">Vocation</option>
               <option value="pnj">PNJ</option>
@@ -180,34 +224,49 @@ function FormAddCharacter() {
               <option value="monster">Monstre</option>
             </select>
           </div>
-          <div className="input-group">
-            <label htmlFor="characterThumbnail">Image du personnage</label>
+
+          <div className="formAddCharacter__input-group">
+            <label
+              htmlFor="characterThumbnail"
+              className="formAddCharacter__label"
+            >
+              Image du personnage
+            </label>
             <input
               type="text"
               name="characterThumbnail"
               id="characterThumbnail"
+              className="formAddCharacter__input"
               readOnly
               value={dataCharacter.characterThumbnail}
             />
           </div>
-          <div className="input-group">
-            <label htmlFor="name">Nom du personnage</label>
+
+          <div className="formAddCharacter__input-group">
+            <label htmlFor="name" className="formAddCharacter__label">
+              Nom du personnage
+            </label>
             <input
               type="text"
               name="name"
               id="name"
+              className="formAddCharacter__input"
               value={name}
               onChange={handleNameChange}
             />
           </div>
-          <section className="row-group">
-            <div className="input-group">
-              <label htmlFor="gender">Genre du Personnage</label>
+
+          <section className="formAddCharacter__row-group row">
+            <div className="formAddCharacter__input-group col">
+              <label htmlFor="gender" className="formAddCharacter__label">
+                Genre du Personnage
+              </label>
               <select
                 name="gender"
                 id="gender"
+                className="formAddCharacter__select"
                 value={dataCharacter.gender}
-                onChange={handleSelectChange}
+                onChange={handleChangement}
               >
                 <option value="">Genre</option>
                 <option value="man">Homme</option>
@@ -215,13 +274,17 @@ function FormAddCharacter() {
                 <option value="uknown">Inconnu</option>
               </select>
             </div>
-            <div className="input-group">
-              <label htmlFor="class">classe du Personnage</label>
+
+            <div className="formAddCharacter__input-group col">
+              <label htmlFor="class" className="formAddCharacter__label">
+                Classe du Personnage
+              </label>
               <select
                 name="class"
                 id="class"
+                className="formAddCharacter__select"
                 value={dataCharacter.class}
-                onChange={handleSelectChange}
+                onChange={handleChangement}
               >
                 <option value="">Classes</option>
                 {Object.values(characterClass).map((value, index) => (
@@ -231,13 +294,17 @@ function FormAddCharacter() {
                 ))}
               </select>
             </div>
-            <div className="input-group">
-              <label htmlFor="race">race du Personnage</label>
+
+            <div className="formAddCharacter__input-group col">
+              <label htmlFor="race" className="formAddCharacter__label">
+                Race du Personnage
+              </label>
               <select
                 name="race"
                 id="race"
+                className="formAddCharacter__select"
                 value={dataCharacter.race}
-                onChange={handleSelectChange}
+                onChange={handleChangement}
               >
                 <option value="">Races</option>
                 {Object.values(characterRace).map((value, index) => (
@@ -248,9 +315,11 @@ function FormAddCharacter() {
               </select>
             </div>
           </section>
-          <div className="button-group">
+
+          <div className="formAddCharacter__button-group">
             <button
               type="button"
+              className="formAddCharacter__button"
               onClick={() => setCurrentSection((prev) => Math.min(prev + 1, 3))}
               disabled={isNextButtonDisabled()}
             >
@@ -258,101 +327,139 @@ function FormAddCharacter() {
             </button>
           </div>
         </section>
+
         <section
           className="formAddCharacter__section"
           style={{ display: currentSection === 2 ? "flex" : "none" }}
         >
-          <h3>"Background"</h3>
-          <div className="input-group">
-            <label htmlFor="alignment.ethic">Alignement du Personnage</label>
-            <select
-              name="alignment.ethic"
-              id="alignment.ethic"
-              value={dataCharacter.alignment.ethic}
-              onChange={handleSelectChange}
+          <h3 className="formAddCharacter__title">Background</h3>
+
+          <div className="formAddCharacter__input-group">
+            <label
+              htmlFor="alignment.ethic"
+              className="formAddCharacter__label"
             >
-              <option value="">Étique</option>
-              {characterAlignment.ethic.map((value, index) => (
-                <option key={index} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-            <select
-              name="alignment.moral"
-              id="alignment.moral"
-              value={dataCharacter.alignment.moral}
-              onChange={handleSelectChange}
-            >
-              <option value="">Morale</option>
-              {characterAlignment.moral.map((value, index) => (
-                <option key={index} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
+              Alignement du Personnage
+            </label>
+            <div className="formAddCharacter__select-group">
+              <select
+                name="alignment.ethic"
+                id="alignment.ethic"
+                className="formAddCharacter__select"
+                value={dataCharacter.alignment.ethic}
+                onChange={handleChangement}
+              >
+                <option value="">Étique</option>
+                {characterAlignment.ethic.map((value, index) => (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+              <select
+                name="alignment.moral"
+                id="alignment.moral"
+                className="formAddCharacter__select"
+                value={dataCharacter.alignment.moral}
+                onChange={handleChangement}
+              >
+                <option value="">Morale</option>
+                {characterAlignment.moral.map((value, index) => (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-          <div className="input-group">
-            <label htmlFor="description">Description</label>
+
+          <div className="formAddCharacter__input-group col">
+            <label htmlFor="description" className="formAddCharacter__label">
+              Description
+            </label>
             <textarea
               name="description"
               id="description"
+              className="formAddCharacter__textarea"
               value={dataCharacter.description}
-              onChange={handleSelectChange}
+              onChange={handleChangement}
             ></textarea>
           </div>
-          <div className="input-group">
-            <h4>Trait</h4>
-            <div className="input-group">
-              <label htmlFor="personalityTraits">Trait de personalité</label>
+
+          <div className="formAddCharacter__input-group">
+            <h4 className="formAddCharacter__subtitle">Trait</h4>
+
+            <div className="formAddCharacter__input-group col">
+              <label
+                htmlFor="personalityTraits"
+                className="formAddCharacter__label"
+              >
+                Trait de personnalité
+              </label>
               <input
                 type="text"
                 name="traits.personalityTraits"
                 id="personalityTraits"
-                onChange={handleSelectChange}
+                className="formAddCharacter__input"
+                onChange={handleChangement}
                 value={dataCharacter.traits.personalityTraits}
               />
             </div>
-            <div className="input-group">
-              <label htmlFor="ideals">Idéaux</label>
+
+            <div className="formAddCharacter__input-group col">
+              <label htmlFor="ideals" className="formAddCharacter__label">
+                Idéaux
+              </label>
               <input
                 type="text"
                 name="traits.ideals"
                 id="ideals"
-                onChange={handleSelectChange}
+                className="formAddCharacter__input"
+                onChange={handleChangement}
                 value={dataCharacter.traits.ideals}
               />
             </div>
-            <div className="input-group">
-              <label htmlFor="bonds">Liens</label>
+
+            <div className="formAddCharacter__input-group col">
+              <label htmlFor="bonds" className="formAddCharacter__label">
+                Liens
+              </label>
               <input
                 type="text"
                 name="traits.bonds"
                 id="bonds"
-                onChange={handleSelectChange}
+                className="formAddCharacter__input"
+                onChange={handleChangement}
                 value={dataCharacter.traits.bonds}
               />
             </div>
-            <div className="input-group">
-              <label htmlFor="flaws">Défauts</label>
+
+            <div className="formAddCharacter__input-group col">
+              <label htmlFor="flaws" className="formAddCharacter__label">
+                Défauts
+              </label>
               <input
                 type="text"
                 name="traits.flaws"
                 id="flaws"
-                onChange={handleSelectChange}
+                className="formAddCharacter__input"
+                onChange={handleChangement}
                 value={dataCharacter.traits.flaws}
               />
             </div>
           </div>
-          <div className="button-group">
+
+          <div className="formAddCharacter__button-group">
             <button
               type="button"
+              className="formAddCharacter__button"
               onClick={() => setCurrentSection((prev) => Math.max(prev - 1, 1))}
             >
               Précédent
             </button>
             <button
               type="button"
+              className="formAddCharacter__button"
               onClick={() => setCurrentSection((prev) => Math.min(prev + 1, 3))}
               disabled={isNextButtonDisabled()}
             >
@@ -360,83 +467,114 @@ function FormAddCharacter() {
             </button>
           </div>
         </section>
+
         <section
           className="formAddCharacter__section"
           style={{ display: currentSection === 3 ? "flex" : "none" }}
         >
-          <h3>Autres</h3>
-          <div className="input-group" hidden>
-            <div className="input-group">
-              <label htmlFor="exp">Expérience</label>
+          <h3 className="formAddCharacter__title">Autres</h3>
+
+          <div className="formAddCharacter__input-group" hidden>
+            <div className="formAddCharacter__input-group">
+              <label htmlFor="exp" className="formAddCharacter__label">
+                Expérience
+              </label>
               <input
                 type="number"
                 name="exp"
                 id="exp"
+                className="formAddCharacter__input"
                 value={dataCharacter.exp}
                 readOnly
               />
             </div>
-            <div className="input-group">
-              <label htmlFor="level">Niveau</label>
+            <div className="formAddCharacter__input-group">
+              <label htmlFor="level" className="formAddCharacter__label">
+                Niveau
+              </label>
               <input
                 type="number"
                 name="level"
                 id="level"
+                className="formAddCharacter__input"
                 value={dataCharacter.level}
                 readOnly
               />
             </div>
           </div>
-          <div className="input-group"></div>
-          <h4>point de vie</h4>
-          <div className="input-group">
-            <label htmlFor="totalHp">Point de vie total</label>
+
+          <div className="formAddCharacter__input-group"></div>
+
+          <h4 className="formAddCharacter__subtitle">Point de vie</h4>
+          <div className="formAddCharacter__input-group">
+            <label htmlFor="totalHp" className="formAddCharacter__label">
+              Point de vie total
+            </label>
             <input
               type="number"
               name="hitPoints.totalHp"
               id="totalHp"
+              className="formAddCharacter__input"
               value={dataCharacter.hitPoints.totalHp}
               onChange={handleTotalHpChange} // Appel de la fonction pour mettre à jour totalHp
               readOnly
             />
           </div>
-          <div className="input-group" hidden>
-            <label htmlFor="currentHp">Points de vie actuel</label>
+
+          <div className="formAddCharacter__input-group" hidden>
+            <label htmlFor="currentHp" className="formAddCharacter__label">
+              Points de vie actuel
+            </label>
             <input
               type="number"
               name="hitPoints.currentHp"
               id="currentHp"
+              className="formAddCharacter__input"
               value={dataCharacter.hitPoints.currentHp}
               readOnly
             />
           </div>
-          <div className="input-group">
-            <h4>Statistiques</h4>
+
+          <div className="formAddCharacter__input-group">
+            <h4 className="formAddCharacter__subtitle">Statistiques</h4>
             {characterStatistics.map((stat) => (
-              <div className="input-group stats" key={stat}>
-                <label htmlFor={stat}>{stat}</label>
+              <div
+                className="formAddCharacter__input-group formAddCharacter__stats"
+                key={stat}
+              >
+                <label htmlFor={stat} className="formAddCharacter__label">
+                  {stat}
+                </label>
                 <input
                   type="number"
-                  name={`datacharacter.statistics.${stat}`}
+                  name={`dataCharacter.statistics.${stat}`}
                   id={stat}
+                  className="formAddCharacter__input"
                   value={dataCharacter.statistics[stat]}
                   readOnly
                 />
-                <button type="button" onClick={() => rollDices(stat)}>
+                <button
+                  type="button"
+                  className="formAddCharacter__button"
+                  onClick={() => rollDices(stat)}
+                >
                   dé
                 </button>
               </div>
             ))}
           </div>
-          <div className="button-group">
+
+          <div className="formAddCharacter__button-group">
             <button
               type="button"
+              className="formAddCharacter__button"
               onClick={() => setCurrentSection((prev) => Math.max(prev - 1, 1))}
             >
               Précédent
             </button>
             <input
               type="submit"
+              className="formAddCharacter__submit"
               value="Création de Personnage"
               disabled={isNextButtonDisabled()}
             />

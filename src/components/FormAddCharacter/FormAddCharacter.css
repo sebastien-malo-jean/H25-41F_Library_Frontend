@@ -1,99 +1,173 @@
-h2 {
-    text-align: center;
-    color: #333;
-}
+/* FormAddCharacter.css */
 
-form {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 1rem;
-    background: #f8f8f8;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Section générale du formulaire */
+
+.formAddCharacter {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.input-group {
-    margin-bottom: 15px;
+.formAddCharacter__section {
+    flex-direction: column;
+    margin-top: var(--spacing-4);
+    padding: var(--spacing-4);
+    background-color: var(--light);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    min-width: 800px;
+    min-height: 750px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.input-group label {
-    display: block;
+/* Titre des sections */
+.formAddCharacter__section h3 {
+    font-size: 24px;
+    color: var(--primary);
+    margin-bottom: var(--spacing-3);
+}
+
+.formAddCharacter__select-group {
+    display: flex;
+    gap: var(--spacing-4);
+}
+
+/* Groupes d'input */
+.formAddCharacter__input-group {
+    margin-bottom: var(--spacing-3);
+}
+
+/* Labels des inputs */
+.formAddCharacter__input-group label {
+    font-size: 16px;
     font-weight: bold;
-    margin-bottom: 5px;
-    color: #444;
+    color: var(--primary);
 }
 
-.input-group input,
-.input-group select,
-.input-group textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.formAddCharacter__textarea {
+    min-width: 100%;
+}
+
+/* Champs de saisie */
+.formAddCharacter__input-group input {
+    padding: var(--spacing-2);
+    border: 1px solid var(--primary);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    background-color: var(--light);
+    color: var(--dark);
+    box-sizing: border-box;
+    min-width: 100%;
+}
+
+/* Boutons */
+.formAddCharacter__button-group {
+    display: flex;
+    min-width: 100%;
+    justify-content: space-between;
+    margin-top: var(--spacing-4);
+}
+
+.formAddCharacter__button-group>button:only-child {
+    margin-left: auto;
+}
+
+.formAddCharacter__button-group button,
+.formAddCharacter__button-group input[type="submit"] {
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.formAddCharacter__button-group button {
+    background-color: var(--secondary);
+    color: var(--light);
+    border: none;
+}
+
+.formAddCharacter__button-group button:hover {
+    background-color: var(--secondary-dark);
+}
+
+.formAddCharacter__button-group input[type="submit"] {
+    background-color: var(--primary);
+    color: var(--light);
+    border: none;
     font-size: 16px;
 }
 
-.input-group h3 {
-    margin-top: 20px;
-    color: #222;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 5px;
+.formAddCharacter__button-group input[type="submit"]:disabled,
+.formAddCharacter__button-group button[type="button"]:disabled {
+    background-color: var(--dark);
+    cursor: not-allowed;
 }
 
-.input-group button {
-    margin-top: 5px;
-    padding: 6px 12px;
-    background: #007bff;
-    color: white;
+.formAddCharacter__button-group input[type="submit"]:not(:disabled):hover {
+    background-color: var(--primary-dark);
+}
+
+/* Statistiques de personnage */
+.formAddCharacter__stats {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+}
+
+.formAddCharacter__stats label {
+    font-size: 16px;
+    color: var(--primary);
+    margin-right: var(--spacing-2);
+}
+
+.formAddCharacter__stats button {
+    padding: var(--spacing-1) var(--spacing-2);
+    background-color: var(--primary);
+    color: var(--light);
     border: none;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    transition: background 0.3s;
 }
 
-.input-group button:hover {
-    background: #0056b3;
+.formAddCharacter__stats button:hover {
+    background-color: var(--primary-dark);
 }
 
-input[type="submit"] {
-    background: #28a745;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
+/* Point de vie */
+h4 {
     font-size: 18px;
-    cursor: pointer;
-    transition: background 0.3s;
+    font-weight: bold;
+    color: var(--primary);
+    margin-top: var(--spacing-4);
 }
 
-input[type="submit"]:hover {
-    background: #218838;
+h4+.formAddCharacter__input-group {
+    margin-top: var(--spacing-2);
 }
 
-.stats {
-    display: flex;
-    gap: 1rem;
-}
-
-.row-group {
-    display: flex;
-    justify-content: space-between;
-}
-
-.button-group {
-    display: flex;
-    justify-content: space-around;
+/* Responsivité */
+@media (max-width: 800px) {
+    .formAddCharacter__section {
+        min-width: 100%;
+        padding: var(--spacing-2);
+    }
 }
 
 @media (max-width: 600px) {
-    main {
-        padding: 15px;
+
+    .formAddCharacter__input-group input {
+        padding: var(--spacing-1);
     }
 
-    .input-group input,
-    .input-group select {
-        font-size: 14px;
+    .formAddCharacter__button-group {
+        flex-direction: column;
+    }
+
+    .formAddCharacter__button-group button,
+    .formAddCharacter__button-group input[type="submit"] {
+        width: 100%;
+        margin-top: var(--spacing-2);
     }
 }
