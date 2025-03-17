@@ -6,6 +6,20 @@ function CharacterCard(props) {
   const { character } = props;
   const navigate = useNavigate();
 
+  async function destroy() {
+    const objRequest = {
+      method: "DELETE",
+    };
+    const response = await fetch(
+      `https://h25-41f-library.onrender.com/characters/${id}`,
+      objRequest
+    );
+
+    if (response.ok == true) {
+      navigate("/characters");
+    }
+  }
+
   function onClicCard() {
     navigate(`/characters/${character.id}`);
   }

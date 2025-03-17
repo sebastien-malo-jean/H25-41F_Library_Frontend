@@ -2,11 +2,12 @@
 import "./CharacterDetails.css";
 //bibliotheque
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"; // Import pour récupérer l'ID
+import { useParams, useNavigate } from "react-router-dom"; // Import pour récupérer l'ID
 //composants
 import CharacterDetail__right from "./CharacterDetail__right/CharacterDetail__right";
 
 function CharacterDetails() {
+  const navigate = useNavigate();
   const { id } = useParams(); // Récupère l'ID depuis l'URL
   const [character, setCharacter] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -29,6 +30,20 @@ function CharacterDetails() {
     }
     fetchData();
   }, [id]); // Exécute la requête à chaque changement d’ID
+
+  async function destroy() {
+    const objRequest = {
+      method: "DELETE",
+    };
+    const response = await fetch(
+      `https://h25-41f-library.onrender.com/characters/${id}`,
+      objRequest
+    );
+
+    if (response.ok == true) {
+      navigate("/characters");
+    }
+  }
 
   if (loading) return <p>Chargement...</p>;
   if (error) return <p>Erreur : {error}</p>;
@@ -79,6 +94,9 @@ function CharacterDetails() {
           </p>
         </section>
       </section>
+      <button type="button" onClick={destroy}>
+        supprimer
+      </button>
     </main>
   );
 }
