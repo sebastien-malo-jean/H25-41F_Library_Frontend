@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./FormAddCharacter.css";
 import characterClass from "../../assets/data/characterClass";
 import characterRace from "../../assets/data/characterRace";
@@ -7,9 +7,6 @@ import characterStatistics from "../../assets/data/characterStats";
 
 function FormAddCharacter() {
   const [name, setName] = useState("");
-  const [stats, setStats] = useState(
-    characterStatistics.reduce((acc, stat) => ({ ...acc, [stat]: 0 }), {})
-  );
   const [dataCharacter, setDataCharacter] = useState({
     charVoc: "",
     characterThumbnail: "",
@@ -24,12 +21,12 @@ function FormAddCharacter() {
     level: 1,
     hitPoints: { totalHp: "", currentHp: "" },
     statistics: {
-      strength: "",
-      dexterity: "",
-      constitution: "",
-      intelligence: "",
-      wisdom: "",
-      charisma: "",
+      strength: 0,
+      dexterity: 0,
+      constitution: 0,
+      intelligence: 0,
+      wisdom: 0,
+      charisma: 0,
     },
   });
 
@@ -62,6 +59,38 @@ function FormAddCharacter() {
 
       return updatedData;
     });
+  };
+
+  useEffect(() => {
+    handleTotalHpChange();
+  }, [
+    dataCharacter.statistics.strength,
+    dataCharacter.statistics.constitution,
+  ]);
+
+  const handleTotalHpChange = () => {
+    // Récupérer les valeurs de constitution et strength
+    const { constitution, strength } = dataCharacter.statistics;
+    // Calculer totalHp
+    const newTotalHp =
+      10 + parseInt(constitution, 10) + Math.floor(parseInt(strength, 10) / 2);
+
+    if (isNaN(newTotalHp)) {
+      setDataCharacter(0);
+    } else {
+      // Mettre à jour l'état avec la nouvelle valeur de totalHp
+      setDataCharacter((prevData) => ({
+        ...prevData,
+        hitPoints: {
+          ...prevData.hitPoints,
+          totalHp: newTotalHp,
+          currentHp:
+            prevData.hitPoints.currentHp === prevData.hitPoints.totalHp
+              ? newTotalHp
+              : prevData.hitPoints.currentHp,
+        },
+      }));
+    }
   };
 
   function removeCompromisedChar(string) {
@@ -146,6 +175,7 @@ function FormAddCharacter() {
                 value={dataCharacter.class}
                 onChange={handleSelectChange}
               >
+                <option value="">Classes</option>
                 {Object.values(characterClass).map((value, index) => (
                   <option key={index} value={value}>
                     {value}
@@ -161,6 +191,7 @@ function FormAddCharacter() {
                 value={dataCharacter.race}
                 onChange={handleSelectChange}
               >
+                <option value="">Races</option>
                 {Object.values(characterRace).map((value, index) => (
                   <option key={index} value={value}>
                     {value}
@@ -288,20 +319,15 @@ function FormAddCharacter() {
           <div className="input-group"></div>
           <h4>point de vie</h4>
           <div className="input-group">
-            <label htmlFor="hitPoints.totalHp">Point de vie total</label>
+            <label htmlFor="totalHp">Point de vie total</label>
             <input
               type="number"
               name="hitPoints.totalHp"
-              id="hitPoints.totalHp"
-              value={
-                10 +
-                (parseInt(dataCharacter.statistics.constitution, 10) || 0) +
-                (parseInt(dataCharacter.statistics.strength, 10) || 0) / 2
-              }
-              /* totalHP = 10 + constitution */
+              id="totalHp"
+              value={dataCharacter.hitPoints.totalHp}
+              onChange={handleTotalHpChange} // Appel de la fonction pour mettre à jour totalHp
               readOnly
-            />{" "}
-            {/*+ Constritution*/}
+            />
           </div>
           <div className="input-group" hidden>
             <label htmlFor="currentHp">Points de vie actuel</label>
@@ -309,7 +335,7 @@ function FormAddCharacter() {
               type="number"
               name="hitPoints.currentHp"
               id="currentHp"
-              value={dataCharacter.hitPoints.totalHp}
+              value={dataCharacter.hitPoints.currentHp}
               readOnly
             />
           </div>
