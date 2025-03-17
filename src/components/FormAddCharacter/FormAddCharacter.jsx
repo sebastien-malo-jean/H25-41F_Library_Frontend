@@ -20,8 +20,8 @@ function FormAddCharacter() {
     alignment: { ethic: "", moral: "" },
     description: "",
     traits: { personalityTraits: "", ideals: "", bonds: "", flaws: "" },
-    exp: "",
-    level: "",
+    exp: 0,
+    level: 1,
     hitPoints: { totalHp: "", currentHp: "" },
     statistics: {
       strength: "",
@@ -34,23 +34,33 @@ function FormAddCharacter() {
   });
 
   const handleNameChange = (e) => {
-    setName(e.target.value);
+    const newName = e.target.value;
+    setName(newName);
+
+    setDataCharacter((prevData) => ({
+      ...prevData,
+      name: newName,
+      characterThumbnail: `${removeCompromisedChar(newName.toLowerCase())}.jpg`,
+    }));
   };
 
   const handleSelectChange = (e) => {
     const { name, value } = e.target;
+
     setDataCharacter((prevData) => {
       const keys = name.split(".");
+      let updatedData = { ...prevData };
+
       if (keys.length === 2) {
-        return {
-          ...prevData,
-          [keys[0]]: {
-            ...prevData[keys[0]],
-            [keys[1]]: value,
-          },
+        updatedData[keys[0]] = {
+          ...updatedData[keys[0]],
+          [keys[1]]: value,
         };
+      } else {
+        updatedData[name] = value;
       }
-      return { ...prevData, [name]: value };
+
+      return updatedData;
     });
   };
 
@@ -64,10 +74,12 @@ function FormAddCharacter() {
 
   function rollDices(stat) {
     const roll = Math.floor(Math.random() * 6) + 1;
-    setStats((prevStats) => ({ ...prevStats, [stat]: roll }));
     setDataCharacter((prevData) => ({
       ...prevData,
-      statistics: { ...prevData.statistics, [stat]: roll },
+      statistics: {
+        ...prevData.statistics,
+        [stat]: parseInt(roll, 10),
+      },
     }));
   }
 
@@ -85,9 +97,10 @@ function FormAddCharacter() {
               value={dataCharacter.charVoc}
               onChange={handleSelectChange}
             >
+              <option value="">Vocation</option>
               <option value="pnj">PNJ</option>
               <option value="player">Joueur</option>
-              <option value="monster">monstre</option>
+              <option value="monster">Monstre</option>
             </select>
           </div>
           <div className="input-group">
@@ -96,8 +109,8 @@ function FormAddCharacter() {
               type="text"
               name="characterThumbnail"
               id="characterThumbnail"
-              disabled
-              value={`${removeCompromisedChar(name.toLowerCase())}.jpg`}
+              readOnly
+              value={dataCharacter.characterThumbnail}
             />
           </div>
           <div className="input-group">
@@ -119,6 +132,7 @@ function FormAddCharacter() {
                 value={dataCharacter.gender}
                 onChange={handleSelectChange}
               >
+                <option value="">Genre</option>
                 <option value="man">Homme</option>
                 <option value="woman">Femme</option>
                 <option value="uknown">Inconnu</option>
@@ -177,8 +191,8 @@ function FormAddCharacter() {
               ))}
             </select>
             <select
-              name="alignement.moral"
-              id="alignement.moral"
+              name="alignment.moral"
+              id="alignment.moral"
               value={dataCharacter.alignment.moral}
               onChange={handleSelectChange}
             >
@@ -192,7 +206,12 @@ function FormAddCharacter() {
           </div>
           <div className="input-group">
             <label htmlFor="description">Description</label>
-            <textarea name="description" id="description"></textarea>
+            <textarea
+              name="description"
+              id="description"
+              value={dataCharacter.description}
+              onChange={handleSelectChange}
+            ></textarea>
           </div>
           <div className="input-group">
             <h4>Trait</h4>
@@ -247,11 +266,23 @@ function FormAddCharacter() {
           <div className="input-group" hidden>
             <div className="input-group">
               <label htmlFor="exp">Expérience</label>
-              <input type="number" name="exp" id="exp" value={0} disabled />
+              <input
+                type="number"
+                name="exp"
+                id="exp"
+                value={dataCharacter.exp}
+                readOnly
+              />
             </div>
             <div className="input-group">
               <label htmlFor="level">Niveau</label>
-              <input type="number" name="level" id="level" value={1} disabled />
+              <input
+                type="number"
+                name="level"
+                id="level"
+                value={dataCharacter.level}
+                readOnly
+              />
             </div>
           </div>
           <div className="input-group"></div>
@@ -262,7 +293,11 @@ function FormAddCharacter() {
               type="number"
               name="hitPoints.totalHp"
               id="hitPoints.totalHp"
-              value={dataCharacter.hitPoints.totalHp}
+              value={
+                10 +
+                (parseInt(dataCharacter.statistics.constitution, 10) || 0) +
+                (parseInt(dataCharacter.statistics.strength, 10) || 0) / 2
+              }
               /* totalHP = 10 + constitution */
               readOnly
             />{" "}
@@ -274,7 +309,7 @@ function FormAddCharacter() {
               type="number"
               name="hitPoints.currentHp"
               id="currentHp"
-              value={dataCharacter.hitPoints.currentHp}
+              value={dataCharacter.hitPoints.totalHp}
               readOnly
             />
           </div>
@@ -285,9 +320,9 @@ function FormAddCharacter() {
                 <label htmlFor={stat}>{stat}</label>
                 <input
                   type="number"
-                  name={`statistics.${stat}`}
+                  name={`datacharacter.statistics.${stat}`}
                   id={stat}
-                  value={stats[stat]}
+                  value={dataCharacter.statistics[stat]}
                   readOnly
                 />
                 <button type="button" onClick={() => rollDices(stat)}>
