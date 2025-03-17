@@ -1,21 +1,223 @@
+/*styles.css*/
+/* Import des polices */
 @import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-header,
+/* Définition des variables */
+:root {
+    /* Couleurs principales */
+    --primary: #8a0000;
+    --primary-dark: #640000;
+    --secondary: #6441a5;
+    --secondary-dark: #4a2f7c;
+    --danger: #d9534f;
+    --danger-dark: #c9302c;
+    --light: #f8f8f8;
+    --dark: #333;
+    --background: #f4f4f4;
+    --border: gold;
+
+    /* Espacements */
+    --spacing-1: 5px;
+    --spacing-2: 10px;
+    --spacing-3: 15px;
+    --spacing-4: 20px;
+
+    /* Bordures */
+    --border-radius: 4px;
+
+    /* Polices */
+    --font-primary: 'Roboto', sans-serif;
+    --font-heading: 'Uncial Antiqua', cursive;
+}
+
+/* Général */
+body {
+    font-family: var(--font-primary);
+    margin: 0;
+    background-color: var(--background);
+    color: var(--dark);
+}
+
+main {
+    margin: 1rem;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    font-family: 'Uncial Antiqua', cursive;
+    font-family: var(--font-heading);
+    color: var(--border);
 }
 
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-3);
 }
 
-main {
-    margin: 1rem;
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-3);
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.col-6 {
+    flex: 0 0 50%;
+}
+
+/* Boutons */
+.btn {
+    display: inline-block;
+    padding: var(--spacing-2) var(--spacing-3);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--light);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: var(--light);
+}
+
+.btn-secondary:hover {
+    background: var(--secondary-dark);
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: var(--light);
+}
+
+.btn-danger:hover {
+    background: var(--danger-dark);
+}
+
+/* Espacements */
+.m-1 {
+    margin: var(--spacing-1);
+}
+
+.m-2 {
+    margin: var(--spacing-2);
+}
+
+.m-3 {
+    margin: var(--spacing-3);
+}
+
+.m-4 {
+    margin: var(--spacing-4);
+}
+
+.my-1 {
+    margin-top: var(--spacing-1);
+    margin-bottom: var(--spacing-1);
+}
+
+.my-2 {
+    margin-top: var(--spacing-2);
+    margin-bottom: var(--spacing-2);
+}
+
+.p-1 {
+    padding: var(--spacing-1);
+}
+
+.p-2 {
+    padding: var(--spacing-2);
+}
+
+.p-3 {
+    padding: var(--spacing-3);
+}
+
+.p-4 {
+    padding: var(--spacing-4);
+}
+
+/* Couleurs */
+.text-primary {
+    color: var(--primary);
+}
+
+.text-secondary {
+    color: var(--secondary);
+}
+
+.text-light {
+    color: var(--light);
+}
+
+.text-dark {
+    color: var(--dark);
+}
+
+.bg-dark {
+    background-color: var(--dark);
+}
+
+.bg-light {
+    background-color: var(--light);
+}
+
+.bg-primary {
+    background-color: var(--primary);
+}
+
+.bg-secondary {
+    background-color: var(--secondary);
+}
+
+/* Formulaires */
+.input-group {
+    margin-bottom: var(--spacing-3);
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: var(--spacing-1);
+    color: var(--border);
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: var(--spacing-2);
+    border: 1px solid var(--primary);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .col-6 {
+        flex: 0 0 100%;
+    }
 }
