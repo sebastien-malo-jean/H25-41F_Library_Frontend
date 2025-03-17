@@ -1,39 +1,43 @@
-//import du Css pour le header
-import "./header.css";
-//importation des routes
-import { NavLink, Link } from "react-router-dom";
-//importation du logo
+import "./Header.css";
+import { NavLink } from "react-router-dom";
 import logo from "../../assets/img/logo.jpg";
+
 function Header() {
   return (
-    <header>
-      <picture>
-        <img src={logo} alt="logo" />
+    <header className="header">
+      <picture className="header__logo">
+        <img src={logo} alt="logo" className="header__logo-img" />
       </picture>
-      <nav>
-        <ul>
-          <li>
-            <NavLink to={"/"}>Accueil</NavLink>
+      <nav className="header__nav">
+        <ul className="header__menu">
+          <li className="header__menu-item">
+            <NavLink to={"/"} className="header__link">
+              Accueil
+            </NavLink>
           </li>
-          <li>
-            Personnages 🡇
-            <ul>
-              <li>
-                <NavLink to={"/characters"}>Liste des personnages</NavLink>
+          <li className="header__menu-item">
+            <span className="header__dropdown">Personnages 🡇</span>
+            <ul className="header__submenu">
+              <li className="header__submenu-item">
+                <NavLink to={"/characters"} className="header__link">
+                  Liste des personnages
+                </NavLink>
               </li>
-              <li>
-                <NavLink to={"/characters/create"}>
+              <li className="header__submenu-item">
+                <NavLink to={"/characters/create"} className="header__link">
                   Création de personnage
                 </NavLink>
               </li>
             </ul>
           </li>
-          <li>
-            <a href="#">À propos</a>
+          <li className="header__menu-item">
+            <a href="#" className="header__link">
+              À propos
+            </a>
           </li>
         </ul>
       </nav>
-      <h1>Créateur de personnage</h1>
+      <h1 className="header__title">Créateur de personnage</h1>
     </header>
   );
 }
