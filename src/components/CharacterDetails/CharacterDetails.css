@@ -46,3 +46,13 @@
         grid-area: description;
     }
 }
+
+@media (max-width: 768px) {
+    .characterDetail {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "title"
+            "left"
+            "description";
+    }
+}

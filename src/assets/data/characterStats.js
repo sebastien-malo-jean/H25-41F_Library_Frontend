@@ -4,7 +4,7 @@ const characterStatistics = [
   "constitution",
   "intelligence",
   "wisdom",
-  "Charisme",
+  "charisma",
 ];
 
 export default characterStatistics;
