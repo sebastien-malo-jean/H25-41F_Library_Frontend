@@ -1,0 +1,199 @@
+.characterDetail__main {
+    &.Humain {
+        background-color: #E6D5B8;
+        color: #3F2D1D;
+
+        h2,
+        h3,
+        h4 {
+            color: #3F2D1D;
+        }
+    }
+
+    &.Aasimar {
+        background-color: #DDE2FF;
+        color: #1F1C5B;
+
+        h2,
+        h3,
+        h4 {
+            color: #1F1C5B;
+        }
+    }
+
+    &.Tiefling {
+        background-color: #5A1F1F;
+        color: #FFD1B3;
+
+        h2,
+        h3,
+        h4 {
+            color: #FFD1B3;
+        }
+    }
+
+    &.Genasi {
+        background-color: #F5B562;
+        color: #5A2905;
+
+        h2,
+        h3,
+        h4 {
+            color: #5A2905;
+        }
+    }
+
+    &.Drow {
+        background-color: #3E3B6F;
+        color: #EFEFFF;
+
+        h2,
+        h3,
+        h4 {
+            color: #EFEFFF;
+        }
+    }
+
+    &.ElfeDesBois {
+        background-color: #87B591;
+        color: #2E4930;
+
+        h2,
+        h3,
+        h4 {
+            color: #2E4930;
+        }
+    }
+
+    &.ElfeSauvage {
+        background-color: #618125;
+        color: #EAE5C8;
+
+        h2,
+        h3,
+        h4 {
+            color: #EAE5C8;
+        }
+    }
+
+    &.NainDEcu {
+        background-color: #905C29;
+        color: #E5C878;
+
+        h2,
+        h3,
+        h4 {
+            color: #E5C878;
+        }
+    }
+
+    &.Duergar {
+        background-color: #595959;
+        color: #DDDDDD;
+
+        h2,
+        h3,
+        h4 {
+            color: #DDDDDD;
+        }
+    }
+
+    &.Hobbit {
+        background-color: #E6D585;
+        color: #5C3A18;
+
+        h2,
+        h3,
+        h4 {
+            color: #5C3A18;
+        }
+    }
+
+    &.Gnome {
+        background-color: #FF85B2;
+        color: #FFF8F8;
+
+        h2,
+        h3,
+        h4 {
+            color: #FFF8F8;
+        }
+    }
+
+    &.DemiElfe {
+        background-color: #B58AB5;
+        color: #3D2F5A;
+
+        h2,
+        h3,
+        h4 {
+            color: #3D2F5A;
+        }
+    }
+
+    &.DemiOrque {
+        background-color: #586B3D;
+        color: #F0F0F0;
+
+        h2,
+        h3,
+        h4 {
+            color: #F0F0F0;
+        }
+    }
+
+    &.Orque {
+        background-color: #46622C;
+        color: #E3E3E3;
+
+        h2,
+        h3,
+        h4 {
+            color: #E3E3E3;
+        }
+    }
+
+    &.Ogre {
+        background-color: #AD760A;
+        color: #FCEEBF;
+
+        h2,
+        h3,
+        h4 {
+            color: #FCEEBF;
+        }
+    }
+
+    &.Gobelin {
+        background-color: #6FCF00;
+        color: #0D3100;
+
+        h2,
+        h3,
+        h4 {
+            color: #0D3100;
+        }
+    }
+
+    &.Kobold {
+        background-color: #D64520;
+        color: #FFE6E6;
+
+        h2,
+        h3,
+        h4 {
+            color: #FFE6E6;
+        }
+    }
+
+    &.YuanTi {
+        background-color: #2E6F2E;
+        color: #E8E2D2;
+
+        h2,
+        h3,
+        h4 {
+            color: #E8E2D2;
+        }
+    }
+}

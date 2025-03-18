@@ -3,6 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+@import "./races.css";
+@import "./classes.css";
+
 /* Définition des variables */
 :root {
     /* Couleurs principales */
@@ -50,7 +53,6 @@ h4,
 h5,
 h6 {
     font-family: var(--font-heading);
-    color: var(--border);
 }
 
 .container {

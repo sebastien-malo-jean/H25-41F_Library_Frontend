@@ -41,7 +41,7 @@ function CharacterDetail__right(props) {
           <strong>Nom :</strong> {character.name}
         </p>
         <p>
-          <strong>Genre :</strong> {character.genre}
+          <strong>Genre :</strong> {character.gender}
         </p>
         <p>
           <strong>Classe :</strong> {character.class}
@@ -50,14 +50,14 @@ function CharacterDetail__right(props) {
           <strong>Race :</strong> {character.race}
         </p>
         <p>
-          <strong>Alignement :</strong> {character.alignement[0]}-
-          {character.alignement[1]}
+          <strong>Alignement :</strong> {character.alignment.ethic}-
+          {character.alignment.moral}
         </p>
         <p>
           <strong>Expérience :</strong> {character.exp}
         </p>
         <p>
-          <strong>Niveau :</strong> {character.lvl}
+          <strong>Niveau :</strong> {character.level}
         </p>
       </section>
       <section
@@ -70,22 +70,22 @@ function CharacterDetail__right(props) {
           <li>
             <p>
               <strong>Traits de personalitée :</strong>{" "}
-              {character.Traits.PersonalityTraits}
+              {character.traits.personalityTraits}
             </p>
           </li>
           <li>
             <p>
-              <strong>Idéaux :</strong> {character.Traits.Ideals}
+              <strong>Idéaux :</strong> {character.traits.ideals}
             </p>
           </li>
           <li>
             <p>
-              <strong>attachement profond :</strong> {character.Traits.Bonds}
+              <strong>attachement profond :</strong> {character.traits.bonds}
             </p>
           </li>
           <li>
             <p>
-              <strong>Défauts :</strong> {character.Traits.Flaws}
+              <strong>Défauts :</strong> {character.traits.flaws}
             </p>
           </li>
         </ul>

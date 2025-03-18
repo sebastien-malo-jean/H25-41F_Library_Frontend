@@ -50,9 +50,9 @@ function CharacterDetails() {
   if (!character) return <p>Aucun personnage trouvé.</p>;
 
   return (
-    <main className="characterDetail__main">
+    <main className={`characterDetail__main ${character.race}`}>
       <h2>Détail du personnage</h2>
-      <section className="characterDetail">
+      <section className={`characterDetail ${character.class}`}>
         <section className="characterDetail__title">
           <h3>{character.name}</h3>
         </section>
@@ -67,31 +67,18 @@ function CharacterDetails() {
             <h3>Point de vie</h3>
             <p>
               <strong>Point de vie total :</strong>{" "}
-              {character.hitPoints.totalHP}
+              {character.hitPoints.totalHp}
             </p>
             <p>
               <strong>Point de vie acutel :</strong>{" "}
-              {character.hitPoints.currentHP}
+              {character.hitPoints.currentHp}
             </p>
           </section>
         </section>
         <CharacterDetail__right key={character.id} character={character} />
         <section className="characterDetail__description">
           <h3>Description</h3>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum
-            dolore facere odit aliquam distinctio officiis, quisquam nam odio.
-            Quidem voluptatum, praesentium quisquam labore ex, doloribus quam
-            omnis hic cupiditate inventore veritatis, esse optio vitae placeat
-            quae assumenda sapiente ipsam adipisci mollitia! Dolor maiores
-            commodi eveniet. Inventore consequuntur minus ipsa reprehenderit.
-            Aspernatur ipsam exercitationem expedita incidunt, culpa totam
-            assumenda consequuntur, debitis porro fugit eum repellendus repellat
-            alias tenetur fuga itaque dignissimos, eveniet reiciendis at quam
-            fugiat! Unde mollitia quisquam nemo provident soluta aliquid labore
-            nesciunt facilis minima totam numquam magnam ad ipsa nulla veniam,
-            consectetur inventore exercitationem cumque nobis hic. Dolorem!
-          </p>
+          <p>{character.description}</p>
         </section>
       </section>
       <button type="button" onClick={destroy}>

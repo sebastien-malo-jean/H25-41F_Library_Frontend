@@ -36,7 +36,7 @@ function CharacterCard(props) {
         </p>
         <p>
           <strong>Genre : </strong>
-          {character.genre}
+          {character.gender}
         </p>
         <p>
           <strong>Classe : </strong>
