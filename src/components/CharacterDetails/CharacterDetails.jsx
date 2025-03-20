@@ -12,6 +12,7 @@ function CharacterDetails() {
   const [character, setCharacter] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loadingText, setLoadingText] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -25,11 +26,30 @@ function CharacterDetails() {
       } catch (err) {
         setError(err.message);
       } finally {
-        setLoading(false);
+        // Ajout d'un délai pour ralentir l'affichage des personnages
+        setTimeout(() => {
+          setLoading(false);
+        }, 1500);
       }
     }
     fetchData();
   }, [id]); // Exécute la requête à chaque changement d’ID
+
+  // Fonction pour afficher les points de "loading"
+  useEffect(() => {
+    let sentence = "";
+    const intervalId = setInterval(() => {
+      if (sentence.length < 3) {
+        sentence += ".";
+      } else {
+        sentence = ".";
+      }
+      setLoadingText(sentence);
+    }, 300);
+
+    // Nettoyage de l'intervalle lorsque le composant est démonté
+    return () => clearInterval(intervalId);
+  }, []); // Ce useEffect ne se déclenche qu'une seule fois au montage du composant
 
   async function destroy() {
     const objRequest = {
@@ -45,7 +65,7 @@ function CharacterDetails() {
     }
   }
 
-  if (loading) return <p>Chargement...</p>;
+  if (loading) return <p>Chargement {loadingText}</p>;
   if (error) return <p>Erreur : {error}</p>;
   if (!character) return <p>Aucun personnage trouvé.</p>;
 
@@ -81,9 +101,11 @@ function CharacterDetails() {
           <p>{character.description}</p>
         </section>
       </section>
-      <button type="button" onClick={destroy}>
-        supprimer
-      </button>
+      <section className="btn-section">
+        <button type="button" className="btn btn-danger" onClick={destroy}>
+          supprimer
+        </button>
+      </section>
     </main>
   );
 }

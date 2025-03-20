@@ -6,7 +6,6 @@
 
 .characterDetail {
     max-width: 1000px;
-    background-color: rgb(224, 224, 224);
     display: grid;
     grid-template-areas:
         "title title"
@@ -45,6 +44,12 @@
     & .characterDetail__description {
         grid-area: description;
     }
+}
+
+.btn-section {
+    margin: 1rem;
+    display: flex;
+    justify-content: space-around;
 }
 
 @media (max-width: 768px) {
