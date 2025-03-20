@@ -1,27 +1,22 @@
 .card {
-    background-color: #696565;
-    color: rgb(248, 243, 212);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 250px;
-    /* Hauteur fixe pour que toutes les cartes soient égales */
+    height: auto;
 }
 
 .card div {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: 'Roboto', sans-serif;
     margin-top: 10px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .card-header {
     & h3 {
         margin: 0;
+        text-align: center;
     }
 }
 
@@ -33,4 +28,26 @@
     & p {
         margin: 0;
     }
+}
+
+.card-body-data {
+    display: flex;
+    border-bottom: solid 2px black;
+    justify-content: space-between;
+    padding: .3rem;
+
+    & p:last-child {
+        margin-right: 1rem;
+    }
+}
+
+.card-footer {
+    display: flex;
+
+    &>* {
+        flex-basis: 100%;
+        margin-top: 1rem;
+    }
+
+
 }
