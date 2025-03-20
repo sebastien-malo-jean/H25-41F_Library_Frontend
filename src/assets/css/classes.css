@@ -1,5 +1,4 @@
-.characterDetail {
-    &.Barbare {
+    .Barbare {
         background-color: #8B4513;
         border: 2px solid #6B2D12;
 
@@ -10,7 +9,7 @@
         }
     }
 
-    &.Barde {
+    .Barde {
         background-color: #7D6FC4;
         border: 2px solid #5A4B9A;
 
@@ -21,7 +20,7 @@
         }
     }
 
-    &.Chaman {
+    .Chaman {
         background-color: #468B8B;
         border: 2px solid #366060;
 
@@ -32,7 +31,7 @@
         }
     }
 
-    &.Druide {
+    .Druide {
         background-color: #5F8D45;
         border: 2px solid #3E642B;
 
@@ -43,7 +42,7 @@
         }
     }
 
-    &.Ensorceleur {
+    .Ensorceleur {
         background-color: #9A4EAE;
         border: 2px solid #722F88;
 
@@ -54,7 +53,7 @@
         }
     }
 
-    &.Guerrier {
+    .Guerrier {
         background-color: #636F7E;
         border: 2px solid #4A525F;
 
@@ -65,7 +64,7 @@
         }
     }
 
-    &.Magicien {
+    .Magicien {
         background-color: #516BC8;
         border: 2px solid #39478F;
 
@@ -76,7 +75,7 @@
         }
     }
 
-    &.Moine {
+    .Moine {
         background-color: #B59368;
         border: 2px solid #8A6B45;
 
@@ -87,7 +86,7 @@
         }
     }
 
-    &.Paladin {
+    .Paladin {
         background-color: #D4D0C8;
         border: 2px solid #A9A49C;
 
@@ -98,7 +97,7 @@
         }
     }
 
-    &.Prêtre {
+    .Prêtre {
         background-color: #E7DFC6;
         border: 2px solid #B5A785;
 
@@ -109,7 +108,7 @@
         }
     }
 
-    &.Rôdeur {
+    .Rôdeur {
         background-color: #6B936E;
         border: 2px solid #4D6C50;
 
@@ -120,7 +119,7 @@
         }
     }
 
-    &.Roublard {
+    .Roublard {
         background-color: #5E6770;
         border: 2px solid #40474E;
 
@@ -130,4 +129,3 @@
             color: #F5F5F5;
         }
     }
-}
