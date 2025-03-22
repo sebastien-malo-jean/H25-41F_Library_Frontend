@@ -30,11 +30,6 @@ function Header() {
               </li>
             </ul>
           </li>
-          <li className="header__menu-item">
-            <a href="#" className="header__link">
-              À propos
-            </a>
-          </li>
         </ul>
       </nav>
       <h1 className="header__title">Créateur de personnage</h1>
