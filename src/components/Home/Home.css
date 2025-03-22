@@ -1,7 +1,44 @@
-.grosRectangle {
-    min-width: 800px;
-    min-height: 600px;
-    border: solid red 2px;
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     text-align: center;
-    color: red;
+    background: linear-gradient(to bottom, #8a0000, #4a2f7c);
+    color: white;
+}
+
+.hero {
+    max-width: 600px;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-family: 'Uncial Antiqua', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-primary {
+    background: gold;
+    color: #640000;
+}
+
+.btn-primary:hover {
+    background: #ffd700;
 }
