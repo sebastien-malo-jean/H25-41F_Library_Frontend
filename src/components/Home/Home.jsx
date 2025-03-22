@@ -4,13 +4,7 @@ import "./Home.css";
 function Home() {
   return (
     <main>
-      <div>Accueil</div>
-      <div className="grosRectangle">test</div>
-      <div className="grosRectangle">test</div>
-      <div className="grosRectangle">test</div>
-      <div className="grosRectangle">test</div>
-      <div className="grosRectangle">test</div>
-      <div className="grosRectangle">test</div>
+      <h2>Accueil</h2>
     </main>
   );
 }
