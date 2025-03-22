@@ -579,7 +579,7 @@ function FormAddCharacter() {
             </button>
             <input
               type="submit"
-              className="formAddCharacter__submit"
+              className=" btn btn-primary"
               value="Création de Personnage"
               disabled={isNextButtonDisabled()}
             />
