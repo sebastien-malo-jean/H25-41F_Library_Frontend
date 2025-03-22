@@ -1,8 +1,14 @@
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 .grid {
+    flex-basis: 80%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
-    margin-top: 2rem;
 }
 
 @media (max-width: 1200px) {

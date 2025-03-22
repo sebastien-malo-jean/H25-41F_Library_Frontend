@@ -1,39 +1,74 @@
-//CSS de la page
 import "./CharacterList.css";
 
 //importation de librairies
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 //importation de composants
 import CharacterCard from "./characterCard/characterCard";
+import ListFilter from "./ListFilter/ListFilter";
 
-//page
 function CharacterList() {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [loadingText, setLoadingText] = useState(""); // Nouvelle variable d'état pour les points de "loading"
+  const [loadingText, setLoadingText] = useState(""); // Variable d'état pour les points de "loading"
+  const location = useLocation(); // Permet de suivre les changements dans l'URL
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch(
-          "https://h25-41f-library.onrender.com/characters"
-        );
-        if (!response.ok) throw new Error("personnages non trouvés !");
-        const charactersData = await response.json();
-        setCharacters(charactersData);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        // Ajout d'un délai pour ralentir l'affichage des personnages
-        setTimeout(() => {
-          setLoading(false);
-        }, 1500);
+  // Fonction pour récupérer les personnages en fonction des filtres dans l'URL
+  const fetchData = async (filters) => {
+    try {
+      // Filtrer les paramètres null, vides ou undefined
+      const filteredFilters = Object.fromEntries(
+        Object.entries(filters).filter(
+          ([key, value]) => value != null && value !== "" // Seulement les filtres valides
+        )
+      );
+
+      // Si aucun filtre n'est présent après le filtrage, on envoie une requête sans paramètres
+      const queryParams = new URLSearchParams(filteredFilters).toString();
+      let apiUrl = `https://h25-41f-library.onrender.com/characters?${queryParams}`;
+
+      // Si aucun filtre n'est valide, on fait une requête sans aucun paramètre (ou avec des valeurs par défaut)
+      if (!queryParams) {
+        apiUrl = `https://h25-41f-library.onrender.com/characters`; // Requête sans filtre
       }
+
+      const response = await fetch(apiUrl);
+
+      // Si la réponse n'est pas OK, on lance une erreur
+      if (!response.ok) {
+        throw new Error("Personnages non trouvés !");
+      }
+
+      const charactersData = await response.json();
+
+      // Si aucun personnage n'est trouvé
+      if (charactersData.length === 0) {
+        throw new Error("Aucun personnage correspondant à ces critères.");
+      }
+
+      setCharacters(charactersData);
+    } catch (err) {
+      // Affichage des erreurs
+      setError(err.message);
+    } finally {
+      // Fin du chargement
+      setLoading(false);
     }
-    fetchData();
-  }, []);
+  };
+
+  // Utilisation des filtres présents dans l'URL
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const filters = {
+      charVoc: queryParams.get("charVoc"),
+      gender: queryParams.get("gender"),
+      class: queryParams.get("class"),
+      race: queryParams.get("race"),
+    };
+    fetchData(filters);
+  }, [location.search]); // La fonction est appelée à chaque changement dans l'URL
 
   // Fonction pour afficher les points de "loading"
   useEffect(() => {
@@ -47,7 +82,6 @@ function CharacterList() {
       setLoadingText(sentence);
     }, 300);
 
-    // Nettoyage de l'intervalle lorsque le composant est démonté
     return () => clearInterval(intervalId);
   }, []); // Ce useEffect ne se déclenche qu'une seule fois au montage du composant
 
@@ -65,11 +99,14 @@ function CharacterList() {
     <main>
       <section>
         <h2>Liste des Personnages</h2>
-        <div className="grid">
-          {characters.map((character) => {
-            return <CharacterCard key={character.id} character={character} />;
-          })}
-        </div>
+        <section className="mainContent">
+          <ListFilter /> {/* Ici on affiche les filtres */}
+          <div className="grid">
+            {characters.map((character) => {
+              return <CharacterCard key={character.id} character={character} />;
+            })}
+          </div>
+        </section>
       </section>
     </main>
   );
