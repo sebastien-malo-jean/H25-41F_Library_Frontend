@@ -1,0 +1,16 @@
+.ListFilter {
+    flex-basis: 20%;
+    border: 5px solid var(--border);
+    border-radius: var(--border-radius);
+    padding: .5rem;
+
+    & form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        & .input-group {
+            flex-basis: 20%;
+        }
+    }
+}
