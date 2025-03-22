@@ -13,12 +13,12 @@ function CharacterList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [loadingText, setLoadingText] = useState(""); // Variable d'état pour les points de "loading"
-  const location = useLocation(); // Permet de suivre les changements dans l'URL
+  const location = useLocation();
 
   // Fonction pour récupérer les personnages en fonction des filtres dans l'URL
   const fetchData = async (filters) => {
     try {
-      // Filtrer les paramètres null, vides ou undefined
+      // Filtre les paramètres null, vides ou undefined
       const filteredFilters = Object.fromEntries(
         Object.entries(filters).filter(
           ([key, value]) => value != null && value !== "" // Seulement les filtres valides
@@ -45,7 +45,7 @@ function CharacterList() {
 
       // Si aucun personnage n'est trouvé
       if (charactersData.length === 0) {
-        throw new Error("Aucun personnage correspondant à ces critères.");
+        throw new Error(`Aucun personnage correspondant à ces critères.`);
       }
 
       setCharacters(charactersData);

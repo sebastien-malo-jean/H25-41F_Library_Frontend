@@ -97,8 +97,10 @@ function ListFilter() {
             ))}
           </select>
         </div>
-        <button className="btn btn-primary">Appliquer les filtres</button>{" "}
-        {/* Bouton de soumission */}
+        <div className="input-group">
+          <button className="btn btn-primary">Appliquer les filtres</button>{" "}
+          {/* Bouton de soumission */}
+        </div>
       </form>
     </section>
   );
