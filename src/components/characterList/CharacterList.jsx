@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 //importation de composants
-import CharacterCard from "./characterCard/characterCard";
+import CharacterCard from "./CharacterCard/CharacterCard";
 import ListFilter from "./ListFilter/ListFilter";
 
 function CharacterList() {
