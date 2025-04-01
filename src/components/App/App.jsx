@@ -10,6 +10,7 @@ import Home from "../Home/Home";
 import CharacterList from "@components/CharacterList/CharacterList";
 import CharacterDetails from "@components/CharacterDetails/CharacterDetails";
 import FormAddCharacter from "@components/FormAddCharacter/FormAddCharacter";
+import Page404 from "@components/Page404/Page404";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/characters" element={<CharacterList />} />
         <Route path="/characters/create" element={<FormAddCharacter />} />
         <Route path="/characters/:id" element={<CharacterDetails />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
       <Footer />
     </div>
