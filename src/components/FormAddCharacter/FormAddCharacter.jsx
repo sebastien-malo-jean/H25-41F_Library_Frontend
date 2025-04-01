@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 function FormAddCharacter() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [currentSection, setCurrentSection] = useState(1);
   const [dataCharacter, setDataCharacter] = useState({
     charVoc: "",
     characterThumbnail: "",
@@ -42,7 +44,6 @@ function FormAddCharacter() {
       charisma: 0,
     },
   });
-  const [currentSection, setCurrentSection] = useState(1);
 
   // Fonction de validation générique
   const isSectionValid = (section) => {
@@ -172,6 +173,7 @@ function FormAddCharacter() {
 
   const onSubmitCharacterForm = async (event) => {
     event.preventDefault();
+    setSubmitted(true);
     const objRequest = {
       method: "POST",
       headers: {
@@ -581,7 +583,7 @@ function FormAddCharacter() {
               type="submit"
               className=" btn btn-primary"
               value="Création de Personnage"
-              disabled={isNextButtonDisabled()}
+              disabled={submitted || isNextButtonDisabled()}
             />
           </div>
         </section>
