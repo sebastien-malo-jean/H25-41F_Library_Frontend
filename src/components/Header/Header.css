@@ -88,7 +88,19 @@
     flex-direction: column;
 }
 
+.header__connectionForm {
+    flex-grow: 1;
+
+    & .input-group {
+
+        & input {
+            box-sizing: border-box;
+        }
+    }
+}
+
 .header__title {
+    flex-grow: 1;
     font-family: var(--font-heading);
     font-size: 2rem;
     color: var(--border);
