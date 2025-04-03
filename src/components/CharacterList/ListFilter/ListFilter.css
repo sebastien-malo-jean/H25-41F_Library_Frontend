@@ -1,0 +1,73 @@
+.ListFilter {
+    flex-basis: 20%;
+
+}
+
+.ListFilter form {
+
+    border: 5px solid var(--border);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    align-items: flex-end;
+    flex: 1;
+    /* Ajoute un écart entre les éléments du formulaire */
+}
+
+.ListFilter .input-group {
+    gap: 1rem;
+    flex-basis: calc(20% - 1rem);
+    /* Les groupes d'input prennent 50% de l'espace avec un écart */
+}
+
+.formAddCharacter__input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    margin-bottom: var(--spacing-3);
+}
+
+.ListFilter label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.ListFilter select {
+    width: 100%;
+    /* Assure que les selects occupent toute la largeur disponible */
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+}
+
+.ListFilter button {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background-color: var(--primary);
+    color: var(--border);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.formAddCharacter__button-group {
+    display: flex;
+    gap: var(--spacing-3);
+    justify-content: center;
+}
+
+.ListFilter button:hover {
+    background-color: var(--primary-dark);
+}
+
+@media (max-width: 768px) {
+    .ListFilter {
+        flex-basis: 100%;
+    }
+
+    .ListFilter .input-group {
+        flex-basis: 100%;
+    }
+}
