@@ -5,7 +5,7 @@ import logo from "../../assets/img/logo.jpg";
 import { AuthContext } from "../AuthContext/AuthContextProvider";
 
 function Header() {
-  const { loginToken, login, logout } = useContext(AuthContext);
+  const { loginToken, login, logout, user } = useContext(AuthContext);
   const formRef = useRef();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -67,11 +67,13 @@ function Header() {
                   Liste des personnages
                 </NavLink>
               </li>
-              <li className="header__submenu-item">
-                <NavLink to={"/characters/create"} className="header__link">
-                  Création de personnage
-                </NavLink>
-              </li>
+              {user && user.role === 0 && (
+                <li className="header__submenu-item">
+                  <NavLink to={"/characters/create"} className="header__link">
+                    Création de personnage
+                  </NavLink>
+                </li>
+              )}
             </ul>
           </li>
         </ul>
