@@ -1,16 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./FormAddCharacter.css";
 import characterClass from "../../assets/data/characterClass";
 import characterRace from "../../assets/data/characterRace";
 import characterAlignment from "../../assets/data/characterAlignment";
 import characterStatistics from "../../assets/data/characterStats";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthContext/AuthContextProvider";
 
 function FormAddCharacter() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [currentSection, setCurrentSection] = useState(1);
+  const { user } = useContext(AuthContext);
   const [dataCharacter, setDataCharacter] = useState({
     charVoc: "",
     characterThumbnail: "",
