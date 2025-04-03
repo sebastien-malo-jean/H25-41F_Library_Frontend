@@ -7,7 +7,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 //routes
 import Home from "../Home/Home";
-import CharacterList from "../CharacterList/CharacterList";
+import CharacterList from "@components/CharacterList/CharacterList";
 import CharacterDetails from "@components/CharacterDetails/CharacterDetails";
 import FormAddCharacter from "@components/FormAddCharacter/FormAddCharacter";
 import Page404 from "@components/Page404/Page404";
