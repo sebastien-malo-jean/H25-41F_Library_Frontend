@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthContext/AuthContextProvider";
 
 function Home() {
   const navigate = useNavigate();
+  const { user, loginToken } = useContext(AuthContext);
 
   return (
     <main className="home-container">
@@ -20,12 +22,22 @@ function Home() {
           >
             Voir les personnages
           </button>
-          <button
-            className="btn btn-primary"
-            onClick={() => navigate("/characters/create")}
-          >
-            Création de personnage
-          </button>
+          {loginToken && (
+            <button
+              className="btn btn-secondary"
+              onClick={() => navigate("/characters/create")}
+            >
+              Créer un personnage
+            </button>
+          )}
+          {user && user.role === 0 && (
+            <button
+              className="btn btn-secondary"
+              onClick={() => navigate("/admin/adminpage")}
+            >
+              Page admin
+            </button>
+          )}
         </div>
       </section>
     </main>

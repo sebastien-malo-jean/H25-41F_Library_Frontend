@@ -1,8 +1,9 @@
 //css
 import "./CharacterDetails.css";
 //bibliotheque
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom"; // Import pour récupérer l'ID
+import { AuthContext } from "../AuthContext/AuthContextProvider";
 //composants
 import CharacterDetail__right from "./CharacterDetail__right/CharacterDetail__right";
 
@@ -13,6 +14,7 @@ function CharacterDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [loadingText, setLoadingText] = useState("");
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchData() {
@@ -101,11 +103,13 @@ function CharacterDetails() {
           <p>{character.description}</p>
         </section>
       </section>
-      <section className="btn-section">
-        <button type="button" className="btn btn-danger" onClick={destroy}>
-          supprimer
-        </button>
-      </section>
+      {user && user.role === 0 && (
+        <section className="btn-section">
+          <button type="button" className="btn btn-danger" onClick={destroy}>
+            supprimer
+          </button>
+        </section>
+      )}
     </main>
   );
 }

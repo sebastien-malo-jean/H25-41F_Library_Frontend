@@ -228,9 +228,13 @@ function FormAddCharacter() {
               onChange={handleChangement}
             >
               <option value="">Vocation</option>
-              <option value="npc">PNJ</option>
+              {user && user.role === 0 && (
+                <>
+                  <option value="npc">PNJ</option>
+                  <option value="monster">Monstre</option>
+                </>
+              )}
               <option value="player">Joueur</option>
-              <option value="monster">Monstre</option>
             </select>
           </div>
 
