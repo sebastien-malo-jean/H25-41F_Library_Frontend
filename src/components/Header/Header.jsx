@@ -67,7 +67,7 @@ function Header() {
                   Liste des personnages
                 </NavLink>
               </li>
-              {user && user.role === 0 && (
+              {loginToken && (
                 <li className="header__submenu-item">
                   <NavLink to={"/characters/create"} className="header__link">
                     Création de personnage
@@ -76,6 +76,13 @@ function Header() {
               )}
             </ul>
           </li>
+          {user && user.role === 0 && (
+            <li className="header__menu-item">
+              <NavLink to={"/admin/adminpage"} className="header__link">
+                Page admin
+              </NavLink>
+            </li>
+          )}
         </ul>
       </nav>
       <h1 className="header__title">Créateur de personnage</h1>
@@ -102,9 +109,12 @@ function Header() {
           {/* affiche les messages d'érreurs */}
         </form>
       )}
-      {loginToken && (
-        <div className="header__button" onClick={logout}>
-          Déconnexion
+      {user && loginToken && (
+        <div className="header__userSection">
+          <p className="header__userName">Bonjour , {user.name}</p>
+          <p onClick={logout} className="header__button">
+            Déconnexion
+          </p>
         </div>
       )}
     </header>
