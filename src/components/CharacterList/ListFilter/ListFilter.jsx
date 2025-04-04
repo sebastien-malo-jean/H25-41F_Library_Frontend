@@ -37,7 +37,7 @@ function ListFilter() {
     <section className="ListFilter">
       <h3>Filtre</h3>
       <form onSubmit={handleSubmit}>
-        <div className="input-group">
+        <div className="ListFilter__input-group">
           <label htmlFor="charVoc">Vocation</label>
           <select
             name="charVoc"
@@ -51,7 +51,7 @@ function ListFilter() {
             <option value="monster">Monstre</option>
           </select>
         </div>
-        <div className="input-group">
+        <div className="ListFilter__input-group">
           <label htmlFor="gender">Genre</label>
           <select
             name="gender"
@@ -65,7 +65,7 @@ function ListFilter() {
             <option value="unknown">Inconnu</option>
           </select>
         </div>
-        <div className="input-group">
+        <div className="ListFilter__input-group">
           <label htmlFor="class">Classe</label>
           <select
             name="class"
@@ -81,7 +81,7 @@ function ListFilter() {
             ))}
           </select>
         </div>
-        <div className="input-group">
+        <div className="ListFilter__input-group">
           <label htmlFor="race">Race</label>
           <select
             name="race"
@@ -97,7 +97,7 @@ function ListFilter() {
             ))}
           </select>
         </div>
-        <div className="input-group">
+        <div className="ListFilter__input-group">
           <button className="btn btn-primary">Appliquer les filtres</button>{" "}
           {/* Bouton de soumission */}
         </div>
