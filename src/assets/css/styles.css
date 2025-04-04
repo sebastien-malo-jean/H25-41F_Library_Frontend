@@ -10,14 +10,14 @@
 /* Définition des variables */
 :root {
     /* Couleurs principales */
-    --primary: #8a0000;
-    --primary-dark: #640000;
-    --secondary: #6441a5;
-    --secondary-dark: #4a2f7c;
+    --primary: #6e2e08;
+    --primary-dark: #3d2106;
+    --secondary: #e6c670;
+    --secondary-dark: #daac2f;
     --danger: #d9534f;
     --danger-dark: #c9302c;
     --light: #f8f8f8;
-    --dark: #333;
+    --dark: #1f0d03;
     --background: #f4f4f4;
     --border: gold;
 
