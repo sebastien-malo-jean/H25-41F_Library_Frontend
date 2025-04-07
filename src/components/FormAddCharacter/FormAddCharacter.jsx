@@ -180,6 +180,7 @@ function FormAddCharacter() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        autorization: `Bearer ${user.token}`,
       },
       body: JSON.stringify(dataCharacter),
     };
