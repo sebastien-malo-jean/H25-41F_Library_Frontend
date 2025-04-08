@@ -11,8 +11,11 @@ function AuthContextProvider(props) {
   // Effet pour vérifier le token stocké dans localStorage
   useEffect(() => {
     const savedToken = localStorage.getItem("loginToken");
-    if (savedToken && validateLoginToken(savedToken)) {
+    const savedUser = localStorage.getItem("user");
+
+    if (savedToken && savedUser && validateLoginToken(savedToken)) {
       setLoginToken(savedToken);
+      setUser(JSON.parse(savedUser)); // Récupère directement les données utilisateur
     } else {
       logout();
     }
@@ -25,8 +28,7 @@ function AuthContextProvider(props) {
         const decodedToken = jwtDecode(loginToken);
         console.log("Token décodé:", decodedToken);
 
-        const { name, email, role } = jwtDecode(loginToken);
-        // console.log({ name, email, role });
+        const { name, email, role } = decodedToken;
         setUser({ name, email, role });
       } catch (error) {
         console.error("Erreur lors du décodage du token:", error);
@@ -42,7 +44,6 @@ function AuthContextProvider(props) {
     if (!loginToken) return false;
     try {
       const decoded = jwtDecode(loginToken);
-      // console.log("Token décodé:", decoded);
       return decoded.exp * 1000 > Date.now();
     } catch (error) {
       console.error("Erreur de décodage du token:", error);
@@ -53,14 +54,18 @@ function AuthContextProvider(props) {
   // Fonction de connexion
   function login(newToken) {
     if (validateLoginToken(newToken)) {
+      const decoded = jwtDecode(newToken);
       localStorage.setItem("loginToken", newToken);
+      localStorage.setItem("user", JSON.stringify(decoded)); // Stocke les infos utilisateur
       setLoginToken(newToken);
+      setUser(decoded);
     }
   }
 
-  //fonction de déconnexion
+  // Fonction de déconnexion
   function logout() {
     localStorage.removeItem("loginToken");
+    localStorage.removeItem("user"); // Supprime aussi les infos utilisateur
     setLoginToken(null);
     setUser(null);
   }

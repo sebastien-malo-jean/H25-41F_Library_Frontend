@@ -176,28 +176,35 @@ function FormAddCharacter() {
   const onSubmitCharacterForm = async (event) => {
     event.preventDefault();
     setSubmitted(true);
+
+    // Récupère le jeton depuis localStorage à chaque soumission
+    const token = localStorage.getItem("loginToken");
+
+    if (!token) {
+      console.log("Jeton manquant. Impossible de soumettre le formulaire.");
+      return;
+    }
+
     const objRequest = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        autorization: `Bearer ${user.token}`,
+        Authorization: `Bearer ${token}`, // Ajoute le token dans les en-têtes
       },
       body: JSON.stringify(dataCharacter),
     };
+
     try {
       const response = await fetch(
         "https://h25-41f-library.onrender.com/characters",
         objRequest
       );
-      console.log(response);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       } else {
         navigate("/characters");
       }
-
-      // Traitez la réponse si la requête réussit
     } catch (error) {
       console.error("Erreur lors de la création du personnage:", error);
     }
